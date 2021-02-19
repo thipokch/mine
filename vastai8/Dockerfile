@@ -10,9 +10,12 @@ RUN apt update \
     wget \
     nano 
     
-RUN wget https://github.com/no-fee-ethereum-mining/nsfminer/releases/download/v1.2.2/nsfminer_1.2.2-ubuntu_16.04-cuda_10.2-opencl.tgz \
-    && tar -xzvf nsfminer_1.2.2-ubuntu_16.04-cuda_10.2-opencl.tgz \
-    && mv nsfminer /usr/local/bin/
+RUN wget https://github.com/ethereum-mining/ethminer/releases/download/v0.18.0/ethminer-0.18.0-cuda-8-linux-x86_64.tar.gz \
+    && tar -xzvf ethminer-0.18.0-cuda-8-linux-x86_64.tar.gz \
+    && cd bin \
+    && mv ethminer /usr/local/bin/nsfminer \
+    && mkdir /usr/local/bin/kernels \
+    && mv kernels/* /usr/local/bin/kernels
 
 RUN wget https://github.com/xmrig/xmrig/releases/download/v6.8.2/xmrig-6.8.2-focal-x64.tar.gz \
     && tar -xzvf xmrig-6.8.2-focal-x64.tar.gz \
