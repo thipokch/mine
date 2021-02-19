@@ -1,50 +1,23 @@
 
-FROM nvidia/cuda:10.0-devel-ubuntu18.04
+FROM nvidia/cuda:10.2-devel-ubuntu18.04
 
 WORKDIR /
 
-ENV TZ="America/New_York"
-
 # Package and dependency setup
-RUN ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime \
-    && apt update \
+RUN apt update \
     && apt install -y git \
-    mesa-common-dev \
-    libdbus-1-dev \
-    libssl-dev \
     tmux \
     wget \
-    nano \
-    && wget https://github.com/Kitware/CMake/releases/download/v3.19.5/cmake-3.19.5.tar.gz\
-    && tar -xzvf cmake-3.19.5.tar.gz \
-    && cd cmake-3.19.5 \
-    && ./bootstrap \
-    && make -j$(nproc) \
-    && make install
+    nano 
     
-# Git repo set up
-RUN git clone https://github.com/no-fee-ethereum-mining/nsfminer.git; \
-    cd nsfminer; \
-    ls; \
-    git checkout tags/v1.3.2 -b ; \
-    git submodule update --init --recursive
-
-# Build
-RUN pwd; \
-    cd nsfminer; \
-    pwd; \
-    ls; \
-    mkdir build; \
-    cd build; \
-    pwd; \
-    cmake .. -DETHASHCUDA=ON -DETHASHCL=OFF -DETHSTRATUM=ON; \
-    cmake --build .; \
-    make install;
+RUN wget https://github.com/no-fee-ethereum-mining/nsfminer/releases/download/v1.2.1/nsfminer-ubuntu-18.04-cuda-10.tgz \
+    && tar -xzvf nsfminer-ubuntu-18.04-cuda-10.tgz \
+    && mv nsfminer /usr/local/bin/
 
 RUN wget https://github.com/xmrig/xmrig/releases/download/v6.8.2/xmrig-6.8.2-focal-x64.tar.gz \
     && tar -xzvf xmrig-6.8.2-focal-x64.tar.gz \
     && cd xmrig-6.8.2 \
-    && cp xmrig config.json /usr/local/bin/
+    && mv xmrig config.json /usr/local/bin/
 
 # Env setup
 ENV GPU_FORCE_64BIT_PTR=0

@@ -1,5 +1,5 @@
 
-FROM nvidia/cuda:11.0.3-devel-ubuntu20.04
+FROM nvidia/cuda:8.0-devel-ubuntu16.04
 
 WORKDIR /
 
@@ -10,8 +10,8 @@ RUN apt update \
     wget \
     nano 
     
-RUN wget https://github.com/no-fee-ethereum-mining/nsfminer/releases/download/v1.2.1/nsfminer-ubuntu-20.04-cuda-11.tgz \
-    && tar -xzvf nsfminer-ubuntu-20.04-cuda-11.tgz \
+RUN wget https://github.com/no-fee-ethereum-mining/nsfminer/releases/download/v1.2.2/nsfminer_1.2.2-ubuntu_16.04-cuda_10.2-opencl.tgz \
+    && tar -xzvf nsfminer_1.2.2-ubuntu_16.04-cuda_10.2-opencl.tgz \
     && mv nsfminer /usr/local/bin/
 
 RUN wget https://github.com/xmrig/xmrig/releases/download/v6.8.2/xmrig-6.8.2-focal-x64.tar.gz \
