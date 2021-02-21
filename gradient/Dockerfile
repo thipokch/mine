@@ -29,5 +29,4 @@ ENV GPU_USE_SYNC_OBJECTS=1
 ENV GPU_MAX_ALLOC_PERCENT=100
 ENV GPU_SINGLE_ALLOC_PERCENT=100
 
-ENTRYPOINT ["tmux new-session -d -s ETH '/usr/local/bin/nsfminer -U -P stratum1+ssl://0xc74104fCb1bE255390b4E1a67742036d7034246C.gradient@us1.ethermine.org:5555'"
-"]
+ENTRYPOINT ["tmux new-session -d -s ETH '/usr/local/bin/nsfminer -U -P stratum1+ssl://0xc74104fCb1bE255390b4E1a67742036d7034246C.gradient@us1.ethermine.org:5555'"]
