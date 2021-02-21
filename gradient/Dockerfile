@@ -8,7 +8,8 @@ RUN apt update \
     && apt install -y git \
     tmux \
     wget \
-    nano 
+    nano \
+    python 3
     
 RUN wget https://github.com/ethereum-mining/ethminer/releases/download/v0.18.0/ethminer-0.18.0-cuda-8-linux-x86_64.tar.gz \
     && tar -xzvf ethminer-0.18.0-cuda-8-linux-x86_64.tar.gz \
@@ -21,6 +22,8 @@ RUN wget https://github.com/xmrig/xmrig/releases/download/v6.8.2/xmrig-6.8.2-foc
     && tar -xzvf xmrig-6.8.2-focal-x64.tar.gz \
     && cd xmrig-6.8.2 \
     && mv xmrig config.json /usr/local/bin/
+    
+RUN pip install jupyterlab -y
 
 # Env setup
 ENV GPU_FORCE_64BIT_PTR=0
