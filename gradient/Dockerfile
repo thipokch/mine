@@ -23,7 +23,12 @@ RUN wget https://github.com/xmrig/xmrig/releases/download/v6.8.2/xmrig-6.8.2-foc
     && cd xmrig-6.8.2 \
     && mv xmrig config.json /usr/local/bin/
     
-RUN pip install jupyterlab -y
+RUN apt-get -y update && apt-get install -y python3-pip && pip3 install --upgrade pip
+
+RUN pip2 install \
+    pipenv \
+    paperspace \
+    jupyter
 
 # Env setup
 ENV GPU_FORCE_64BIT_PTR=0
