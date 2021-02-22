@@ -9,7 +9,6 @@ RUN apt update \
     tmux \
     wget \
     nano \
-    nvidia-current \
     nvidia-settings
     
 RUN wget https://github.com/ethereum-mining/ethminer/releases/download/v0.18.0/ethminer-0.18.0-cuda-8-linux-x86_64.tar.gz \
